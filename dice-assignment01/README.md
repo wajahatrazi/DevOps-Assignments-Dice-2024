@@ -173,6 +173,8 @@ Assignment#1 - Docker - Jan 2024
 
 2) Creating the container while setting the port, making it interactive and confirming it by opening the localhost on browser
     wajahat@wajahat:~/Learning/DevOps-Dice-2024/dice-assignment01$ docker run -it -p 8080:80 --name c1-nginx -v my_volume:/usr/share/nginx/html nginx
+
+2.1) Container running
         /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
         /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
         /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
@@ -196,7 +198,7 @@ Assignment#1 - Docker - Jan 2024
         2024/01/18 20:23:55 [error] 31#31: *1 open() "/usr/share/nginx/html/favicon.ico" failed (2: No such file or directory), client: 172.17.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost:8080", referrer: "http://localhost:8080/"
         172.17.0.1 - - [18/Jan/2024:20:23:55 +0000] "GET /favicon.ico HTTP/1.1" 404 555 "http://localhost:8080/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" "-"
 
-
+2.2) Exiting the container
         ^C2024/01/18 20:26:32 [notice] 32#32: signal 2 (SIGINT) received, exiting
         2024/01/18 20:26:32 [notice] 32#32: exiting
         2024/01/18 20:26:32 [notice] 1#1: signal 2 (SIGINT) received, exiting
