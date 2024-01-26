@@ -6,6 +6,7 @@
 Reference - docker networking: youtube.com/watch?v=bKFMS5C4CG0&ab_channel=NetworkChuck
 
 1) 
+
     wajahat@wajahat:~/Learning/DevOps-Dice-2024/dice-assignment02$ docker network ls
     NETWORK ID     NAME      DRIVER    SCOPE
     f16af642e1e2   bridge    bridge    local
@@ -18,16 +19,19 @@ Reference - docker networking: youtube.com/watch?v=bKFMS5C4CG0&ab_channel=Networ
     74cf6cfa55533d572a34af46a45a60d8785d7ff038f837f9563d6d7317ee33ec
 
 3) 
+
     wajahat@wajahat:~/Learning/DevOps-Dice-2024/dice-assignment02$ docker run -itd --name nginx_container --network my_network -p 8080:80 nginx
     6150b1f96083a410aa02f8d611056af5adbe138c340587e563cacb20ae3d9b1e
 
 
 4) 
+
     wajahat@wajahat:~/Learning/DevOps-Dice-2024/dice-assignment02$ docker run -itd --name httpd_container --network my_network -p 8081:80 httpd
     d8bfebad8bfcf5442c73f20421057e16573198d21662be86d0c221557dc90daf
 
 
 5) 
+
     wajahat@wajahat:~/Learning/DevOps-Dice-2024/dice-assignment02$ docker network inspect my_network 
     [
         {
@@ -86,10 +90,12 @@ Reference - docker networking: youtube.com/watch?v=bKFMS5C4CG0&ab_channel=Networ
     nginx_container
 
 8) 
+
     wajahat@wajahat:~/Learning/DevOps-Dice-2024/dice-assignment02$ docker run -itd -p 8082:80 --name nginx_container02 --network my_network nginx
     4af751a8ee798bfdcf191d59119fe55d72313bf4fca5cf455609b6c13237cb32
 
 9) 
+
     wajahat@wajahat:~/Learning/DevOps-Dice-2024/dice-assignment02$ docker container ls
     CONTAINER ID   IMAGE     COMMAND                  CREATED              STATUS              PORTS                                   NAMES
     4af751a8ee79   nginx     "/docker-entrypoint.…"   About a minute ago   Up About a minute   0.0.0.0:8082->80/tcp, :::8082->80/tcp   nginx_container02
@@ -98,6 +104,7 @@ Reference - docker networking: youtube.com/watch?v=bKFMS5C4CG0&ab_channel=Networ
 
 
 10) 
+
     wajahat@wajahat:~/Learning/DevOps-Dice-2024/dice-assignment02$ docker stop nginx_container02 httpd_container 
     nginx_container02
     httpd_container
@@ -109,10 +116,12 @@ Reference - docker networking: youtube.com/watch?v=bKFMS5C4CG0&ab_channel=Networ
     httpd_container
 
 12) 
+
     wajahat@wajahat:~/Learning/DevOps-Dice-2024/dice-assignment02$ docker network rm my_network 
     my_network
 
 13) 
+
     wajahat@wajahat:~/Learning/DevOps-Dice-2024/dice-assignment02$ docker network ls
     NETWORK ID     NAME      DRIVER    SCOPE
     f16af642e1e2   bridge    bridge    local
@@ -126,11 +135,13 @@ Reference - docker networking: youtube.com/watch?v=bKFMS5C4CG0&ab_channel=Networ
 
 
 1) 
+
     wajahat@wajahat:~/Learning/DevOps-Dice-2024/dice-assignment02$ docker build -t hello-app -f Dockerfile.web .
 
     wajahat@wajahat:~/Learning/DevOps-Dice-2024/dice-assignment02$ docker build -t redis-app -f Dockerfile.db .
 
 2) 
+
     wajahat@wajahat:~/Learning/DevOps-Dice-2024/dice-assignment02$ docker images
     REPOSITORY   TAG       IMAGE ID       CREATED         SIZE
     hello-app    latest    00d638b0a8a5   6 minutes ago   491MB
@@ -144,6 +155,7 @@ Reference - docker networking: youtube.com/watch?v=bKFMS5C4CG0&ab_channel=Networ
 
 
 3) 
+
     wajahat@wajahat:~/Learning/DevOps-Dice-2024/dice-assignment02$ docker run -itd -p 8080:8080 --name redis-container redis-app
     100eb5ce609a6bc49c74b2b5e1949c340fee09664b595bdd299ae4ede6279e8c
 
@@ -152,12 +164,14 @@ Reference - docker networking: youtube.com/watch?v=bKFMS5C4CG0&ab_channel=Networ
 
 
 4) 
+
     wajahat@wajahat:~/Learning/DevOps-Dice-2024/dice-assignment02$ docker ps
     CONTAINER ID   IMAGE       COMMAND                  CREATED          STATUS          PORTS                                       NAMES
     45c847efd180   redis-app   "docker-entrypoint.s…"   10 seconds ago   Up 9 seconds    6379/tcp                                    redis-container
     29c614debf31   hello-app   "python3 hello.py"       35 seconds ago   Up 34 seconds   0.0.0.0:8080->8080/tcp, :::8080->8080/tcp   hello-container
 
 5) 
+
     wajahat@wajahat:~/Learning/DevOps-Dice-2024/dice-assignment02$ docker compose up
     [+] Running 2/2
     ✔ Container dice-assignment02-db-1   Running                                                                                                              0.0s 
