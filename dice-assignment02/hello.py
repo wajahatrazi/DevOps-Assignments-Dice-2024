@@ -1,12 +1,11 @@
-from flask import Flask
+import uvicorn
+from fastapi import FastAPI
 
-app = Flask(__name__)
+app = FastAPI()
 
-
-@app.route("/")
-def hello():
-    return "<h1>Hello, there this is dice assignment 02!</h1>"
-
+@app.get("/")
+def get_home():
+    return ("Hello World this is Assignment 02!")
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0')
+    uvicorn.run(app, host="0.0.0.0", port=8080)

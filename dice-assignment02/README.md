@@ -106,3 +106,49 @@ f16af642e1e2   bridge    bridge    local
 183c02c374ff   host      host      local
 fdb7192c9da4   none      null      local
 
+**Docker Compose**
+
+wajahat@wajahat:~/Learning/DevOps-Dice-2024/dice-assignment02$ docker build -t hello-app -f Dockerfile.web .
+
+wajahat@wajahat:~/Learning/DevOps-Dice-2024/dice-assignment02$ docker build -t redis-app -f Dockerfile.db .
+
+wajahat@wajahat:~/Learning/DevOps-Dice-2024/dice-assignment02$ docker images
+REPOSITORY   TAG       IMAGE ID       CREATED         SIZE
+hello-app    latest    00d638b0a8a5   6 minutes ago   491MB
+ubuntu       latest    e34e831650c1   2 weeks ago     77.9MB
+redis-app    latest    c69197e471d9   2 weeks ago     138MB
+redis        latest    bdff4838c172   2 weeks ago     138MB
+python       latest    e7177b0afd0e   5 weeks ago     1.02GB
+alpine       latest    f8c20f8bbcb6   7 weeks ago     7.38MB
+nginx        latest    a8758716bb6a   3 months ago    187MB
+httpd        latest    92fa43a2ff60   3 months ago    167MB
+
+wajahat@wajahat:~/Learning/DevOps-Dice-2024/dice-assignment02$ docker run -itd -p 8080:8080 --name redis-container redis-app
+100eb5ce609a6bc49c74b2b5e1949c340fee09664b595bdd299ae4ede6279e8c
+
+wajahat@wajahat:~/Learning/DevOps-Dice-2024/dice-assignment02$ docker run -itd --name hello-container -p 8081:8080 hello-app
+672d221dc3fbe56694bde87fb968170cfd43ded38fc088b93739bb88c66d7a82
+
+wajahat@wajahat:~/Learning/DevOps-Dice-2024/dice-assignment02$ docker ps
+CONTAINER ID   IMAGE       COMMAND                  CREATED          STATUS          PORTS                                       NAMES
+45c847efd180   redis-app   "docker-entrypoint.s…"   10 seconds ago   Up 9 seconds    6379/tcp                                    redis-container
+29c614debf31   hello-app   "python3 hello.py"       35 seconds ago   Up 34 seconds   0.0.0.0:8080->8080/tcp, :::8080->8080/tcp   hello-container
+
+wajahat@wajahat:~/Learning/DevOps-Dice-2024/dice-assignment02$ docker compose up
+[+] Running 2/2
+ ✔ Container dice-assignment02-db-1   Running                                                                                                              0.0s 
+ ✔ Container dice-assignment02-web-1  Recreated                                                                                                            0.1s 
+Attaching to db-1, web-1
+Error response from daemon: driver failed programming external connectivity on endpoint dice-assignment02-web-1 (ece7440f41a8d9b8d150a846e415ac27594e8d558986ee6763a8ed5315409b66): Bind for 0.0.0.0:8080 failed: port is already allocated
+wajahat@wajahat:~/Learning/DevOps-Dice-2024/dice-assignment02$ docker compose up
+[+] Running 2/0
+ ✔ Container dice-assignment02-db-1   Running                                                                                                              0.0s 
+ ✔ Container dice-assignment02-web-1  Recreated                                                                                                            0.1s 
+Attaching to db-1, web-1
+web-1  | INFO:     Started server process [1]
+web-1  | INFO:     Waiting for application startup.
+web-1  | INFO:     Application startup complete.
+web-1  | INFO:     Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)
+web-1  | INFO:     172.21.0.1:49164 - "GET / HTTP/1.1" 200 OK
+web-1  | INFO:     172.21.0.1:49164 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+
