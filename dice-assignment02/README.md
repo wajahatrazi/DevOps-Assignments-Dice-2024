@@ -1,5 +1,7 @@
 
-# Assignment 02 - Docker Networks & Docker Compose
+# Assignment 02
+
+**Docker Networks**
 
 Reference - docker networking: youtube.com/watch?v=bKFMS5C4CG0&ab_channel=NetworkChuck
 
@@ -94,4 +96,13 @@ httpd_container
 wajahat@wajahat:~/Learning/DevOps-Dice-2024/dice-assignment02$ docker rm nginx_container02 httpd_container 
 nginx_container02
 httpd_container
+
+wajahat@wajahat:~/Learning/DevOps-Dice-2024/dice-assignment02$ docker network rm my_network 
+my_network
+
+wajahat@wajahat:~/Learning/DevOps-Dice-2024/dice-assignment02$ docker network ls
+NETWORK ID     NAME      DRIVER    SCOPE
+f16af642e1e2   bridge    bridge    local
+183c02c374ff   host      host      local
+fdb7192c9da4   none      null      local
 
