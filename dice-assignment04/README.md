@@ -65,7 +65,7 @@ Deleting minikube
     🔥  Removing /home/wajahat/.minikube/machines/minikube ...
     💀  Removed all traces of the "minikube" cluster.
 
-Againing starting the service
+Starting the cluster
 
     wajahat@wajahat:~/.../dice-assignment04$ minikube start
 
@@ -109,5 +109,6 @@ Version
 
     minikube version: v1.32.0
     commit: 8220a6eb95f0a4d75f7f2d7b14cef975f050512d
+
 
 
